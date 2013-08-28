@@ -2,14 +2,14 @@
 #include <stdio.h>
 
 
-typedef struct linked_list{
-    struct linked_list* next;
-    struct linked_list* prev;
-    int value;
+typedef struct linked_list {
+	struct linked_list *next;
+	struct linked_list *prev;
+	int value;
 } linked_list;
 
 
-void print_array_stats(double* array, int size){
+void print_array_stats(double *array, int size) {
 	double sum = 0;
 	double max = array[0];
 	int i = 0;
@@ -21,20 +21,20 @@ void print_array_stats(double* array, int size){
 		max = (array[i] > max ? array[i] : max);
 	}
 	printf("Sum: %f\n", sum);
-	printf("Average: %f\n", sum/(double)size);
+	printf("Average: %f\n", sum / (double)size);
 	printf("Max: %f\n", max);
 }
 
 
-linked_list* new_linked_list(int size, int value){
-	linked_list *start = (linked_list*)malloc(sizeof(linked_list));
+linked_list *new_linked_list(int size, int value) {
+	linked_list *start = (linked_list *)malloc(sizeof(linked_list));
 	start->value = value;
 	start->prev = NULL;
 	start->next = NULL;
 	linked_list *curr = start;
 	int i = 1;
 	for (i = 1; i < size; i++) {
-		linked_list *temp = (linked_list*)malloc(sizeof(linked_list));
+		linked_list *temp = (linked_list *)malloc(sizeof(linked_list));
 		temp->value = value;
 		curr->next = temp;
 		temp->prev = curr;
@@ -45,7 +45,7 @@ linked_list* new_linked_list(int size, int value){
 }
 
 
-void print_linked_list(linked_list* ll, int horizontal, int direction){
+void print_linked_list(linked_list *ll, int horizontal, int direction) {
 	linked_list *curr = ll;
 	if (!direction) {
 		while (curr->next) {
@@ -71,7 +71,7 @@ void print_linked_list(linked_list* ll, int horizontal, int direction){
 }
 
 
-int sum_linked_list(linked_list* ll){
+int sum_linked_list(linked_list *ll) {
 	int sum = 0;
 	while (ll) {
 		sum += ll->value;
@@ -81,12 +81,12 @@ int sum_linked_list(linked_list* ll){
 }
 
 
-void insert_linked_list(linked_list* ll, int pos, int value){
+void insert_linked_list(linked_list *ll, int pos, int value) {
 	int i = 0;
 	for (i = 0; i < pos - 1; i++) { // We need to find the element BEFORE
 		ll = ll->next;
 	}
-	linked_list *new_node = (linked_list*)malloc(sizeof(linked_list));
+	linked_list *new_node = (linked_list *)malloc(sizeof(linked_list));
 	new_node->prev = ll;
 	new_node->next = ll->next;
 	ll->next->prev = new_node;
@@ -95,7 +95,7 @@ void insert_linked_list(linked_list* ll, int pos, int value){
 	new_node->value = value;
 }
 
-void merge_linked_list(linked_list* a, linked_list* b){
+void merge_linked_list(linked_list *a, linked_list *b) {
 	int index = 1;
 	linked_list *tempA;
 	linked_list *tempB;
@@ -110,7 +110,7 @@ void merge_linked_list(linked_list* a, linked_list* b){
 	}
 }
 
-void destroy_linked_list(linked_list* ll){
+void destroy_linked_list(linked_list *ll) {
 	if (!ll) {
 		return;
 	}
@@ -124,37 +124,37 @@ void destroy_linked_list(linked_list* ll){
 	}
 }
 
-int main(int argc, char** argv){
+int main(int argc, char **argv) {
 
-    //Array statistics
-    double array[5] = {2.0, 3.89, -3.94, 10.1, 0.88};
-    print_array_stats(array, 5);
+	//Array statistics
+	double array[5] = {2.0, 3.89, -3.94, 10.1, 0.88};
+	print_array_stats(array, 5);
 
-    //Creating liked list with 3 3s and 4 4s
-    linked_list* ll3 = new_linked_list(3,3);
-    linked_list* ll4 = new_linked_list(4,4);
+	//Creating liked list with 3 3s and 4 4s
+	linked_list *ll3 = new_linked_list(3, 3);
+	linked_list *ll4 = new_linked_list(4, 4);
 
-    //Should print: "3 3 3"
-    print_linked_list(ll3, 1, 1);
+	//Should print: "3 3 3"
+	print_linked_list(ll3, 1, 1);
 
-    //Inserting a 5 at the 1st position
-    insert_linked_list(ll3, 1, 5);
+	//Inserting a 5 at the 1st position
+	insert_linked_list(ll3, 1, 5);
 
-    //Should print "3 5 3 3"
-    print_linked_list(ll3, 1, 1);
+	//Should print "3 5 3 3"
+	print_linked_list(ll3, 1, 1);
 
-    //Printing backwards, should print: "3 3 5 3"
-    print_linked_list(ll3, 1, 0);
+	//Printing backwards, should print: "3 3 5 3"
+	print_linked_list(ll3, 1, 0);
 
-    //Merging the linked lists
-    merge_linked_list(ll3, ll4);
+	//Merging the linked lists
+	merge_linked_list(ll3, ll4);
 
-    //Printing the result, should print: "3 4 5 4 3 4 3 4"
-    print_linked_list(ll3, 1,1);
+	//Printing the result, should print: "3 4 5 4 3 4 3 4"
+	print_linked_list(ll3, 1, 1);
 
-    //Summing the elements, should be 30
-    printf("Sum: %d\n", sum_linked_list(ll3));
+	//Summing the elements, should be 30
+	printf("Sum: %d\n", sum_linked_list(ll3));
 
-    //Freeing the memory of ll3
-    destroy_linked_list(ll3);
+	//Freeing the memory of ll3
+	destroy_linked_list(ll3);
 }
