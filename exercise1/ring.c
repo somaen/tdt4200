@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
 		MPI_Send(&out, 1, MPI_INT, targetRank, 1, MPI_COMM_WORLD);
 		// Get the final result from the last node.
 		MPI_Recv(&in, 1, MPI_INT, sourceRank, 1, MPI_COMM_WORLD, &status);
-		printf("Rank %d received %d from rank %d\n", rank, in, size);
+		printf("Rank %d received %d from rank %d\n", rank, in, sourceRank);
 	} else {
 		if (targetRank == size) { // The last node must wrap to target node 0
 			targetRank = 0;
