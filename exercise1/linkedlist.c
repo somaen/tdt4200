@@ -115,10 +115,12 @@ void destroy_linked_list(linked_list* ll){
 		return;
 	}
 	linked_list *next = ll->next;
-	while (next) {
+	while (ll) {
 		free(ll);
 		ll = next;
-		next = ll->next;
+		if (ll) {
+			next = ll->next;
+		}
 	}
 }
 
