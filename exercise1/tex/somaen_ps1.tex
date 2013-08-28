@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{datetime}
+\yyyymmdddate
+\title{TDT4200 - Problem Set 1}
+\author{Einar Johan Trøan Sømåen}
+\begin{document}
+\maketitle
+
+\section{Part I, Theory}
+\subsection*{a)} \textit{Explain why multi-core processors have become so popular the past few years, despite being harder
+to program.}
+\\\\
+We are reaching a limit as to how much faster we can go in terms of pure serial execution speed, additionally we are getting problems with "dark silicon", meaning that we can't really fire up an entire CPU for serial execution, without melting it, to a larger and larger degree, thus we have to reap the benefits that can be found from executing our code in parallel instead, to continue increasing the execution speed of our programs.
+
+\subsection*{b)} \textit{Briefly describe the four kinds of parallel systems in Flynn’s taxonomy (SISD, SIMD, MISD, MIMD),
+as well as SPMD.}
+
+SISD - Single Instruction Single Data - Classical serial execution system.
+SIMD - Single Instruction Multiple Data - Vector-processing, one instruction performed on a set of data (i.e. matrix-scalar multiplication can be done as a single instruction, where as many multiplications as possible of those involved then can happen in parallell) SSE/Altivec are examples of SIMD-additions to existing CPU-architechtures.
+MISD - Multiple Instruction Single Data
+MIMD - Multiple Instruction Multiple Data
+
+\subsection*{c)} \textit{Briefly describe the main difference between a shared-memory system and a distributed-memory
+system.}
+
+A shared memory system is for instance what your household variant computer usually can be viewed as if working with multiple threads today, all the memory is shared among the threads (and indeed also geographically placed in the same machine), a programming model for this type of system is OpenMP.
+
+A distributed memory system on the other hand, has it's memory distributed geographically among the nodes, such that a single node might have some memory, but that is local to that exact node, and thus not shared with the other nodes, to gain access to this memory, you would need to communicate between the nodes (i.e. with MPI).
+
+\end{document}
