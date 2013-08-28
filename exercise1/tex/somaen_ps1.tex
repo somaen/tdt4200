@@ -1,4 +1,6 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
+\usepackage[a4paper]{geometry}
+\usepackage{fullpage}
 \usepackage[utf8x]{inputenc}
 \usepackage{datetime}
 \yyyymmdddate
@@ -14,12 +16,15 @@ to program.}
 We are reaching a limit as to how much faster we can go in terms of pure serial execution speed, additionally we are getting problems with "dark silicon", meaning that we can't really fire up an entire CPU for serial execution, without melting it, to a larger and larger degree, thus we have to reap the benefits that can be found from executing our code in parallel instead, to continue increasing the execution speed of our programs.
 
 \subsection*{b)} \textit{Briefly describe the four kinds of parallel systems in Flynn’s taxonomy (SISD, SIMD, MISD, MIMD),
-as well as SPMD.}
-
-SISD - Single Instruction Single Data - Classical serial execution system.
-SIMD - Single Instruction Multiple Data - Vector-processing, one instruction performed on a set of data (i.e. matrix-scalar multiplication can be done as a single instruction, where as many multiplications as possible of those involved then can happen in parallell) SSE/Altivec are examples of SIMD-additions to existing CPU-architechtures.
-MISD - Multiple Instruction Single Data
-MIMD - Multiple Instruction Multiple Data
+as well as SPMD.}\\ \\
+\begin{tabular}{ | l | l | p{8.4cm} | } \hline
+\textbf{Acronym} & \textbf{Full Name} & \textbf{Explanation} \\ \hline
+SISD & Single Instruction Single Data & Classical serial execution system. \\ \hline
+SIMD & Single Instruction Multiple Data & Vector-processing, one instruction performed on a set of data (i.e. matrix-scalar multiplication can be done as a single instruction, where as many multiplications as possible of those involved then can happen in parallell) SSE/Altivec are examples of SIMD-additions to existing CPU-architectures. \\\hline
+MISD & Multiple Instruction Single Data &  Rarely seen, unless you count the pipeline itself, in this case various execution units perform different operations on the same data.\\\hline
+MIMD & Multiple Instruction Multiple Data & Multiple execution units performing (potentially different) instructions on different parts of the data, the clue here is that on an instruction level the various execution units can be doing quite different things, to quite different sets of data\\\hline
+SPMD & Single Program Multiple Data & Is the application of splitting a problem into subproblems, and running these subproblems in paralell on various execution units, thus the data is split, but still controlled by the same program (consider calculating some numeric integral, the problem in one domain can be handled on some CPU, while some other domain is handled by some other CPU)\\ \hline
+\end{tabular} 
 
 \subsection*{c)} \textit{Briefly describe the main difference between a shared-memory system and a distributed-memory
 system.}
